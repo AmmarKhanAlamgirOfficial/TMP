@@ -1,1 +1,950 @@
-#
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>My Articles</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Georgia&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --primary-color: #dc2626;
+      --primary-hover: #b91c1c;
+      --secondary-color: #6b7280;
+      --light-bg: #ffffff;
+      --card-bg: #ffffff;
+      --text-color: #111827;
+      --text-light: #6b7280;
+      --like-color: #dc2626;
+      --like-hover: #b91c1c;
+      --overflow: hidden;
+    }
+
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: var(--light-bg);
+      color: var(--text-color);
+      line-height: 1.6;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    .image-caption {
+      font-family: Arial, sans-serif;
+      font-size: 14px;
+      color: #999;
+      margin-top: 10px;
+    }
+  
+   .subhead-caption {
+     margin-top: 8px;
+     }
+    .subhead-caption {
+      
+    font-size: 16px;
+    font-style: italic;
+    color: #555;
+    font-family: 'Georgia', serif;
+    line-height: 1.6;
+  
+    /*  font-family: Arial, sans-serif;
+      font-size: 15px;
+      color: #454545;
+      margin-top: 10px; */
+    }
+ 
+  h1 {
+    font-size: 2.5rem;
+    font-weight: bold;
+    font-family: impact, Arial, sans-serif;
+    color: #000;
+    margin-bottom: 0.5rem;
+    
+   /* font-family: 'Playfair Display', serif;
+    font-weight: 700; */
+    }
+  
+ h2 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+  }  
+ 
+  p {
+    font-family: Georgia, serif; /* Body text */
+    font-size: 18px;
+    line-height: 1.6;
+  }
+.responsive-img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      margin: 0 auto;
+      border-radius: 12px;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+      border: 1px solid black;
+    }
+  .live-label {
+    font-family: Arial, sans-serif;
+    color: red;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+    header {
+      background: transparent;
+      color: #222;
+      padding: 1.5rem 1rem;
+      text-align: center;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      position: relative;
+    }
+
+    .header-content {
+       max-width: 1200px;
+       margin: 0 auto;
+    /*   text-align: center;
+       font-family: 'Arial Black', Arial, sans-serif; /* Very bold, widely supported */
+
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+      flex: 1;
+    }
+
+    .article {
+      background: var(--card-bg);
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+     /* border-radius: 12px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05); */
+      transition: transform 0.2s, box-shadow 0.2s;
+      position: relative;
+    }
+  
+  /* For the main article/content container */
+.article, main, .content {
+  border: none;    /* Very light gray border */
+  border-radius: none;         /* Slight rounding, optional */
+  background: none;             /* White background */
+  box-shadow: none;             /* No shadow for a flat look */
+}
+
+
+    .article:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+
+    .article h2 {
+      color: var(--primary-color);
+      margin-top: 0;
+      margin-bottom: 1rem;
+      font-size: 1.5rem;
+    }
+
+    .article-meta {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 1rem;
+      color: var(--text-light);
+      font-size: 0.9rem;
+    }
+
+    .article-meta .author {
+      font-weight: 600;
+      color: var(--text-color);
+    }
+
+    .article-meta .separator {
+      opacity: 0.5;
+    }
+
+    .article-content {
+      margin-bottom: 1.5rem;
+    }
+
+    .article-actions {
+      display: flex;
+      gap: 12px;
+      margin-top: 1.5rem;
+    }
+
+    .btn {
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .btn-primary {
+      background-color: var(--primary-color);
+      color: white;
+      border: none;
+    }
+
+    .btn-primary:hover {
+      background-color: var(--primary-hover);
+      transform: translateY(-1px);
+    }
+
+    .btn-outline {
+      background-color: transparent;
+      border: 1px solid var(--secondary-color);
+      color: var(--secondary-color);
+    }
+
+    .btn-outline:hover {
+      border-color: var(--primary-color);
+      color: var(--primary-color);
+    }
+
+    .btn:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none !important;
+    }
+
+    .comment-section {
+      background: var(--card-bg);
+      padding: 1.5rem;
+      border-radius: 12px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+      margin-top: 1rem;
+    }
+
+    .comment-section h3 {
+      margin-top: 0;
+      margin-bottom: 1rem;
+      font-size: 1.25rem;
+      color: var(--text-color);
+    }
+
+    textarea {
+      width: 100%;
+      height: 100px;
+      margin-bottom: 1rem;
+      padding: 12px;
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      resize: none;
+      font-family: inherit;
+      transition: border-color 0.2s;
+    }
+
+    textarea:focus {
+      outline: none;
+      border-color: var(--primary-color);
+      box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+    }
+
+    .comment-list {
+      margin-top: 1.5rem;
+    }
+
+    .comment-card {
+      background-color: var(--light-bg);
+      padding: 1rem;
+      border-radius: 8px;
+      margin-top: 1rem;
+      animation: fadeIn 0.3s ease-in-out;
+      position: relative;
+    }
+
+    .comment-text {
+      margin-bottom: 0.5rem;
+      word-break: break-word;
+    }
+
+    .comment-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 0.85rem;
+      color: var(--text-light);
+    }
+
+    .comment-actions {
+      display: flex;
+      gap: 8px;
+      position: absolute;
+      top: 8px;
+      right: 8px;
+    }
+
+    .comment-actions button {
+      background: transparent;
+      border: none;
+      color: var(--secondary-color);
+      cursor: pointer;
+      font-size: 0.9rem;
+      padding: 2px 6px;
+      border-radius: 4px;
+      transition: all 0.2s;
+    }
+
+    .comment-actions button:hover {
+      color: var(--primary-color);
+      background: rgba(79, 70, 229, 0.1);
+    }
+
+    .empty-state {
+      text-align: center;
+      padding: 2rem;
+      color: var(--text-light);
+    }
+
+    .empty-state i {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      opacity: 0.5;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(5px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Enhanced Like Button Styles */
+    .like-btn {
+      color: var(--secondary-color);
+      background: none;
+      border: 1px solid var(--secondary-color);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.3s ease;
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+    }
+
+    .like-btn:hover {
+      color: var(--like-color);
+      border-color: var(--like-color);
+      background: rgba(220, 38, 38, 0.05);
+    }
+
+    .like-btn.liked {
+      color: var(--like-color);
+      border-color: var(--like-color);
+      background: rgba(220, 38, 38, 0.1);
+    }
+
+    .like-btn.liked:hover {
+      background: rgba(220, 38, 38, 0.2);
+    }
+
+    .like-icon {
+      transition: all 0.3s ease;
+    }
+
+    .like-btn.liked .like-icon {
+      animation: heartBeat 0.5s;
+    }
+
+    @keyframes heartBeat {
+      0% { transform: scale(1); }
+      25% { transform: scale(1.2); }
+      50% { transform: scale(0.9); }
+      75% { transform: scale(1.1); }
+      100% { transform: scale(1); }
+    }
+
+    .tag {
+      display: inline-block;
+      background: rgba(79, 70, 229, 0.1);
+      color: var(--primary-color);
+      padding: 0.25rem 0.5rem;
+      border-radius: 4px;
+      font-size: 0.75rem;
+      font-weight: 500;
+      margin-right: 0.5rem;
+    }
+  .share-section {
+    text-align: left;
+    margin-top: 20px;
+    border-top: 1px solid #e5e7eb;
+  }
+
+  .share-section h4 {
+    margin: 0 0 4px 0; /* top right bottom left */
+    font-size: 1rem;
+    color: var(--text-light);
+  }
+
+  .share-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px; /* horizontal & vertical gap between buttons */
+    margin: 0; /* remove any top margin */
+    padding: 0;
+  }
+
+  .share-buttons > * {
+    margin: 0; /* ensure no margin in individual buttons */
+  }
+  
+    /* Social Sharing Styles
+    .share-section {
+      text-align: left;
+      margin-top: 1rem;
+      padding-top: 1rem;
+      border-top: 1px solid #e5e7eb;
+    }
+
+    .share-section h4 {
+      margin-bottom: 0.2rem !important; 
+      font-size: 1rem;
+      color: var(--text-light);
+    }
+
+    .share-buttons {
+      display: flex;
+      gap: 4px !important;
+      flex-wrap: wrap;
+    } */
+
+    .share-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      color: white;
+      font-size: 1rem;
+      transition: transform 0.2s;
+    }
+
+    .share-btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .twitter { background-color: #1DA1F2; }
+    .facebook { background-color: #4267B2; }
+    .linkedin { background-color: #0077B5; }
+    .whatsapp { background-color: #25D366; }
+    .reddit { background-color: #FF5700; }
+
+    /* Navigation Buttons */
+    .article-navigation {
+      display: flex;
+      justify-content: space-between;
+      margin: 2rem 0;
+    }
+
+    .nav-btn {
+      padding: 0.75rem 1.5rem;
+      border-radius: 8px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .nav-btn.prev {
+      background-color: var(--light-bg);
+      color: var(--text-color);
+      border: 1px solid #e5e7eb;
+    }
+
+    .nav-btn.next {
+      background-color: var(--primary-color);
+      color: white;
+      border: none;
+    }
+
+    .nav-btn.prev:hover {
+      background-color: #f3f4f6;
+    }
+
+    .nav-btn.next:hover {
+      background-color: var(--primary-hover);
+    }
+
+    /* Footer Styles */
+    footer {
+      background-color: var(--card-bg);
+      padding: 2rem 1rem;
+      text-align: center;
+      border-top: 1px solid #e5e7eb;
+      margin-top: 2rem;
+    }
+
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .footer-disclaimer {
+      color: var(--text-light);
+      font-size: 0.875rem;
+      margin-top: 1rem;
+    }
+
+    .website-owner {
+      font-weight: 600;
+      color: var(--primary-color);
+      margin-bottom: 0rem;
+      margin-top: 1rem;
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        padding: 0 1rem;
+      }
+      
+      .article {
+        padding: 1rem;
+      }
+      
+      .article-actions {
+        flex-direction: column;
+      }
+
+      .article-navigation {
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .nav-btn {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="tags">
+        <span class="tag">Russia</span>
+        <span class="tag">Ukraine</span>
+        <span class="tag">Eastern Europe</span>
+        <span class="tag">U.S</span>
+        <span class="tag">NATO</span>
+      </div>
+    <br>
+    <div class="header-content">
+      <h1 class="text-2xl md:text-6xl font-bold">Western Hypocrisy on Ukraine War</h1>
+      <p class="subhead-caption">
+      As the Russia-Ukraine war drags into its third year, it’s no longer just a regional fight. it’s a global power play, with the U.S profiting, Europe divided, and Slavic unity collapsing.
+    </p>
+      <Br>
+      <!-- <p class="mt-2 opacity-90" style="text-align: left; margin-left:+5px; "><b>By Ammar Khan</b></p> -->
+      
+      <div class="image-container">
+        <img src="https://i.imgur.com/IzCvScW.png" alt="ukraine Control Map" 
+    class="responsive-img">
+    <p class="image-caption">
+      FILE PHOTO: "Visual Representation of the Ongoing Russia-Ukraine War" created by The paragraph (Ammar Khan)
+    </p>
+  </div>
+      
+    <!-- Share Section -->
+      <div class="share-section">
+        <div class="website-owner">@AmmarKhan</div>
+        <h4>20 June 2025 - Share:</h4>
+        <div class="share-buttons">
+          <a href="#" class="share-btn twitter" onclick="shareOnTwitter(1)" title="Share on Twitter">
+            <i class="fab fa-twitter"></i>
+          </a>
+          <a href="#" class="share-btn facebook" onclick="shareOnFacebook(1)" title="Share on Facebook">
+            <i class="fab fa-facebook-f"></i>
+          </a>
+          <a href="#" class="share-btn linkedin" onclick="shareOnLinkedIn(1)" title="Share on LinkedIn">
+            <i class="fab fa-linkedin-in"></i>
+          </a>
+          <a href="#" class="share-btn whatsapp" onclick="shareOnWhatsApp(1)" title="Share on WhatsApp">
+            <i class="fab fa-whatsapp"></i>
+          </a>
+          <a href="#" class="share-btn reddit" onclick="shareOnReddit(1)" title="Share on Reddit">
+            <i class="fab fa-reddit-alien"></i>
+          </a>
+        </div>
+      </div>
+    </div>    
+        
+    </div>
+  </header>
+  <div class="container">
+    <!-- Article 1
+    <div class="article" id="article-1" data-article-id="1">
+      <div class="article-meta">
+        <span class="author">Ammar Khan</span> 
+        <span class="separator">•</span>
+        <span class="date">June 8, 2025</span>
+        <span class="separator">•</span>
+        <span class="read-time">10 min read</span>
+      </div> -->
+     
+      <div class="article-content">
+        
+        <p class="mt-3">The Russia-Ukraine war, now dragging into its third year, has become far more than just a fight between two neighboring countries. it has turned into a global political game, where outside powers are using the conflict to serve their own interests. </p>
+
+<div class="image-container">
+        <img src="https://i.imgur.com/Nzbar9G.png" alt="Russia-Ukraine The Paragraph">
+    <p class="image-caption">
+      FILE PHOTO: "Visual Representation created by The paragraph (Ammar Khan)
+    </p>
+  </div>
+        
+<p class="mt-3">The recent rise in drone attacks and missile strikes between Russia and Ukraine shows how deep and violent this war has become.</p>
+
+<p class="mt-3">But what is more dangerous is how the United States is silently using Ukraine as a frontline as a weapon to wear down Russia, while pretending to be Ukraine's biggest supporter in the entire world. Behind the massive aid packages and military support, the U.S. has been signing big deals through American companies to take control of Ukraine’s resources, such as BlackRock and other investment firms stepping in to manage Ukraine’s reconstruction, giving them influence over agriculture, energy, and infrastructure. </p>
+
+<p class="mt-3">At the same time, U.S. officials have held secret talks with Russia on matters like nuclear arms, global oil prices, and even prisoner exchanges, showing that Washington is playing a double game, fueling the war on one side while protecting its own long-term interests with both sides.</p>
+        <br>
+    <div class="image-container">
+        <img src="https://i.imgur.com/AXh36Zh.jpg" alt="Russia-Ukraine The Paragraph">
+    <p class="image-caption">
+      FILE PHOTO: US and Russian officials meet for talks mediated by Saudi Arabia in Riyadh on Tuesday, February 18, 2025 (AFP)
+    </p>
+  </div>    
+        
+<p class="mt-3">Europe, meanwhile, is not fully united. Some leaders especially in France, have started to realize that, if this war continued, this will not only weaken Russia but also drag Europe into economic trouble and greater insecurity. French President Emmanuel Macron has openly warned about the need to prepare for the possibility of direct involvement if Russia advances further, while also expressing concerns about the U.S. turning the war into a profit driven project. This has led to growing tensions within Europe. some European leaders support formula of continued military and Economic aid to Ukraine, while others want a more diplomatic engagement with Russia to end the war in Ukraine. 
+</p>
+
+<p class="mt-3">Many Europeans now see that, while Ukraine bleeds, the U.S. made gains through arms sales, political control, and weakening of Russia without sending its own troops. For Russia, this should be a wake-up call. The war, instead of protecting Russia, is being used to justify NATO’s expansion, isolate Moscow globally, and turn its neighbor into a permanent enemy. But more importantly, it is damaging Slavic unity, the cultural and historical connection between Russia and Ukraine that could have formed the base of a strong Eastern alliance. </p>
+  <br>
+    <div class="image-container">
+        <img src="https://i.imgur.com/tXS5SxF.png" alt="Russia-Ukraine The Paragraph">
+    <p class="image-caption">
+      FILE PHOTO: "Visual Representation of Russia-Ukraine" by The Paragraph (Ammar Khan)
+    </p>
+  </div> 
+        
+<p class="mt-3">By fighting each other, both nations are falling into the trap set by outside powers who have no interest in peace or shared heritage. If Russia truly wants long-term strength, it must stop seeing Ukraine only as a battlefield rather start seeing it as a lost brother, a nation with shared roots, religion, and history. The path forward should not be through destruction, but through rebuilding trust and resisting the global game that is designed to divide and exploit both country. Without peace, both nations Ukraine as well as Russia will suffer endlessly, while combined West profits quietly, and the dream of a united, strong Slavic region will slowly die under the weight of war and manipulation designed by West.</p>
+        
+               <!--  <br>
+        <p><a href= "#">click here to read full Article</a></p> -->
+      </div>
+      <div class="article-actions">
+        <button class="btn btn-outline like-btn" onclick="toggleLike(1)">
+          <span class="like-icon"><i class="far fa-heart"></i></span>
+          <span class="like-count"></span>
+          <span class="like-text">Likes</span>
+        </button>
+        <button class="btn btn-primary" onclick="toggleComments(1)">
+          <i class="far fa-comment"></i>
+          Show Comments
+        </button>
+      </div>
+      
+      
+      <!-- Share Section -->
+      <div class="share-section">
+        <!--  <div class="website-owner">@AmmarKhan</div> -->
+        <h4>Share this article:</h4>
+        <div class="share-buttons">
+          <a href="#" class="share-btn twitter" onclick="shareOnTwitter(1)" title="Share on Twitter">
+            <i class="fab fa-twitter"></i>
+          </a>
+          <a href="#" class="share-btn facebook" onclick="shareOnFacebook(1)" title="Share on Facebook">
+            <i class="fab fa-facebook-f"></i>
+          </a>
+          <a href="#" class="share-btn linkedin" onclick="shareOnLinkedIn(1)" title="Share on LinkedIn">
+            <i class="fab fa-linkedin-in"></i>
+          </a>
+          <a href="#" class="share-btn whatsapp" onclick="shareOnWhatsApp(1)" title="Share on WhatsApp">
+            <i class="fab fa-whatsapp"></i>
+          </a>
+          <a href="#" class="share-btn reddit" onclick="shareOnReddit(1)" title="Share on Reddit">
+            <i class="fab fa-reddit-alien"></i>
+          </a>
+        </div>
+      </div>
+   
+
+    <!-- Font Awesome for Icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<!-- Navigation Buttons -->
+<div style="display: flex; flex-direction: column; align-items: center; gap: 15px; margin-top: 30px;">
+
+  <!-- Home Button -->
+  <a href="https://sites.google.com/view/themuslimpost/home?authuser=0"
+     style="display: flex; align-items: center; justify-content: center; padding: 14px 30px; border-radius: 14px; background-color: #ffffff; color: #111827; text-decoration: none; font-size: 18px; font-weight: 600; border: 2px solid #e5e7eb; width: 100%; max-width: 300px; box-shadow: 0 1px 4px rgba(0,0,0,0.05);">
+    <i class="fas fa-home" style="margin-right: 10px;"></i> Home
+  </a>
+
+  <!-- Next Article Button -->
+  <a href="https://sites.google.com/view/themuslimpost/our-newsletters/the-paragraph/article-2-new-reality-irans-military-might?authuser=0"
+     style="display: flex; align-items: center; justify-content: center; padding: 14px 30px; border-radius: 14px; background-color: #ef0000; color: #ffffff; text-decoration: none; font-size: 18px; font-weight: 600; width: 100%; max-width: 300px; box-shadow: 0 1px 6px rgba(0,0,0,0.15);">
+    Next Article <i class="fas fa-arrow-right" style="margin-left: 10px;"></i>
+  </a>
+
+</div>
+  
+
+  <footer>
+    <div class="footer-content">
+      <div class="footer-disclaimer">
+        &copy; 2025 Ammar Khan. All rights reserved. Content on this site is protected by copyright law.
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Initialize localStorage data if not exists
+    //if (!localStorage.getItem('articleLikes')) {
+      //localStorage.setItem('articleLikes', JSON.stringify({
+        //1: { count: 24, userLiked: false },
+      //  2: { count: 18, userLiked: false }
+     // }));
+ //   }
+
+    if (!localStorage.getItem('articleComments')) {
+      localStorage.setItem('articleComments', JSON.stringify({
+        1: [],
+        2: []
+      }));
+    }
+
+    // Get comments for a specific article
+    function getComments(articleId) {
+      const allComments = JSON.parse(localStorage.getItem('articleComments') || '{}');
+      return allComments[articleId] || [];
+    }
+
+    // Save comments for a specific article
+    function saveComments(articleId, comments) {
+      const allComments = JSON.parse(localStorage.getItem('articleComments') || {});
+      allComments[articleId] = comments;
+      localStorage.setItem('articleComments', JSON.stringify(allComments));
+    }
+
+    // Toggle submit button based on input
+    function toggleSubmitButton(articleId) {
+      const commentInput = document.getElementById(`comment-input-${articleId}`);
+      const submitButton = document.getElementById(`submit-button-${articleId}`);
+      submitButton.disabled = commentInput.value.trim() === "";
+    }
+
+    // Handle Ctrl+Enter for comment submission
+    function handleKey(e, articleId) {
+      if (e.ctrlKey && e.key === "Enter") {
+        submitComment(articleId);
+      }
+    }
+
+    // Submit a new comment
+    function submitComment(articleId) {
+      const commentInput = document.getElementById(`comment-input-${articleId}`);
+      const text = commentInput.value.trim();
+      if (!text) return;
+
+      const comment = {
+        id: Date.now(),
+        text: text,
+        time: new Date().toLocaleString(),
+        author: "You" // In a real app, this would be the logged-in user
+      };
+
+      const comments = getComments(articleId);
+      comments.unshift(comment); // Add new comment at the beginning
+      saveComments(articleId, comments);
+
+      commentInput.value = "";
+      toggleSubmitButton(articleId);
+      renderComments(articleId);
+    }
+
+    // Delete a comment
+    function deleteComment(articleId, commentId) {
+      if (confirm("Are you sure you want to delete this comment?")) {
+        const comments = getComments(articleId).filter(c => c.id !== commentId);
+        saveComments(articleId, comments);
+        renderComments(articleId);
+      }
+    }
+
+    // Edit a comment
+    function editComment(articleId, commentId) {
+      const comments = getComments(articleId);
+      const comment = comments.find(c => c.id === commentId);
+      const newText = prompt("Edit your comment:", comment.text);
+      
+      if (newText && newText.trim() !== "") {
+        comment.text = newText.trim();
+        saveComments(articleId, comments);
+        renderComments(articleId);
+      }
+    }
+
+    // Render comments for an article
+    function renderComments(articleId) {
+      const commentList = document.getElementById(`comment-list-${articleId}`);
+      const comments = getComments(articleId);
+      
+      if (comments.length === 0) {
+        commentList.innerHTML = `
+          <div class="empty-state">
+            <i class="far fa-comment-dots"></i>
+            <p>No comments yet. Be the first to share your thoughts!</p>
+          </div>
+        `;
+        return;
+      }
+
+      commentList.innerHTML = comments.map(comment => `
+        <div class="comment-card">
+          <div class="comment-text">${comment.text}</div>
+          <div class="comment-meta">
+            <span>${comment.author}</span>
+            <span>${comment.time}</span>
+          </div>
+          ${comment.author === "You" ? `
+            <div class="comment-actions">
+              <button onclick="editComment(${articleId}, ${comment.id})" title="Edit">
+                <i class="fas fa-edit"></i>
+              </button>
+              <button onclick="deleteComment(${articleId}, ${comment.id})" title="Delete">
+                <i class="fas fa-trash"></i>
+              </button>
+            </div>
+          ` : ''}
+        </div>
+      `).join('');
+    }
+
+    // Toggle like status for an article
+    function toggleLike(articleId) {
+      const likeBtn = document.querySelector(`#article-${articleId} .like-btn`);
+      const likeIcon = document.querySelector(`#article-${articleId} .like-icon i`);
+      const likeCount = document.querySelector(`#article-${articleId} .like-count`);
+      
+      const likesData = JSON.parse(localStorage.getItem('articleLikes'));
+      const articleData = likesData[articleId];
+      
+      if (articleData.userLiked) {
+        // Unlike the article
+        articleData.count--;
+        articleData.userLiked = false;
+        likeBtn.classList.remove('liked');
+        likeIcon.classList.remove('fas');
+        likeIcon.classList.add('far');
+      } else {
+        // Like the article
+        articleData.count++;
+        articleData.userLiked = true;
+        likeBtn.classList.add('liked');
+        likeIcon.classList.remove('far');
+        likeIcon.classList.add('fas');
+      }
+      
+      // Update the count display
+      likeCount.textContent = articleData.count;
+      
+      // Save to localStorage
+      localStorage.setItem('articleLikes', JSON.stringify(likesData));
+      
+      // Add animation class
+      likeIcon.classList.add('animate-like');
+      setTimeout(() => {
+        likeIcon.classList.remove('animate-like');
+      }, 1000);
+    }
+
+    // Toggle comments visibility
+    function toggleComments(articleId) {
+      const commentsSection = document.getElementById(`comments-${articleId}`);
+      const toggleBtn = document.querySelector(`#article-${articleId} .btn-primary`);
+      
+      if (commentsSection.style.display === 'none') {
+        commentsSection.style.display = 'block';
+        toggleBtn.innerHTML = `<i class="far fa-comment"></i> Hide Comments`;
+        renderComments(articleId);
+      } else {
+        commentsSection.style.display = 'none';
+        toggleBtn.innerHTML = `<i class="far fa-comment"></i> Show Comments`;
+      }
+    }
+
+    // Social Sharing Functions
+  // Your fixed article details
+  const fixedTitle = "The Paragraph – A Must-Read From The Muslim Post";
+  const author = "Ammar Khan";
+  const fixedUrl = "https://sites.google.com/view/themuslimpost/our-newsletters/the-paragraph/articles?authuser=0";
+
+  function shareOnTwitter() {
+    const text = encodeURIComponent(`Check out this article: "${fixedTitle}" by @${author}`);
+    const url = encodeURIComponent(fixedUrl);
+    window.open(`https://twitter.com/intent/tweet?text=${text}&url=${url}`, '_blank');
+  }
+
+  function shareOnFacebook() {
+    const url = encodeURIComponent(fixedUrl);
+    const quote = encodeURIComponent(`📰 Read this article: "${fixedTitle}" by ${author}`);
+    window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}&quote=${quote}`, '_blank');
+  }
+
+  function shareOnLinkedIn() {
+    const title = encodeURIComponent(fixedTitle);
+    const url = encodeURIComponent(fixedUrl);
+    window.open(`https://www.linkedin.com/shareArticle?mini=true&url=${url}&title=${title}`, '_blank');
+  }
+
+  function shareOnWhatsApp() {
+    const text = encodeURIComponent(`Check out this article: "${fixedTitle}" by ${author} - ${fixedUrl}`);
+    window.open(`https://wa.me/?text=${text}`, '_blank');
+  }
+
+  function shareOnReddit() {
+    const title = encodeURIComponent(fixedTitle);
+    const url = encodeURIComponent(fixedUrl);
+    window.open(`https://www.reddit.com/submit?url=${url}&title=${title}`, '_blank');
+  }
+
+    // Initialize like counts and states on page load
+    document.addEventListener('DOMContentLoaded', function() {
+      const likesData = JSON.parse(localStorage.getItem('articleLikes'));
+      
+      Object.keys(likesData).forEach(articleId => {
+        const likeBtn = document.querySelector(`#article-${articleId} .like-btn`);
+        const likeIcon = document.querySelector(`#article-${articleId} .like-icon i`);
+        const likeCount = document.querySelector(`#article-${articleId} .like-count`);
+        
+        if (likeCount) {
+          likeCount.textContent = likesData[articleId].count;
+        }
+        
+        if (likesData[articleId].userLiked) {
+          likeBtn.classList.add('liked');
+          likeIcon.classList.remove('far');
+          likeIcon.classList.add('fas');
+        }
+      });
+    });
+
+    // Animation for like button
+    const style = document.createElement('style');
+    style.textContent = `
+      @keyframes heartBeat {
+        0% { transform: scale(1); }
+        25% { transform: scale(1.2); }
+        50% { transform: scale(0.9); }
+        75% { transform: scale(1.1); }
+        100% { transform: scale(1); }
+      }
+      .animate-like {
+        animation: heartBeat 0.5s;
+      }
+    `;
+    document.head.appendChild(style);
+  </script>
+</body>
+</html>
